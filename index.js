@@ -6,9 +6,12 @@ const port = 8080;
 import cors from "cors"
 
 
-//middleware ---to connect to front end.
 app.use(cors());
 app.use(express.json());
+app.use((req, res, next) => {
+    console.log('Middleware');
+    next();
+})
 
 const getBooksData = () => {
     const data = JSON.parse(fs.readFileSync("data.json"));
